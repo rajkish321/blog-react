@@ -34,7 +34,7 @@ const Create = () => {
         <div className="create">
             <h2>Enter a new blog</h2>
             <form onSubmit={handleSubmit}>
-
+                
                 <label>Blog Title</label>
                 <input 
                     type="text"
