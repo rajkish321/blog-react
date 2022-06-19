@@ -8,15 +8,20 @@ import awsExports from "./aws-exports";
 Amplify.configure(awsExports);
 
 const Home = () => {
-    // const url = 'http://localhost:8000/blogs/'
     const [blogs, setBlogs] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState(none)
 
     async function fetchBlogs() {
         try {
           const blogData = await API.graphql(graphqlOperation(listBlogs))
           const blogs = blogData.data.listBlogs.items
           setBlogs(blogs)
-        } catch (err) { console.log('error fetching todos: ' + err.message) }
+          setIsLoading(true)
+        } catch (err) { 
+          console.log('error fetching todos: ' + err.message) 
+          setError(err.message)
+        }
       }
     useEffect(() => {
         fetchBlogs()
@@ -25,9 +30,9 @@ const Home = () => {
 
     return ( 
         <div className="Home">
-            {/* {isLoading && <div> Loading... </div>} */}
+            {isLoading && <div> Loading... </div>}
             {blogs && <BlogList blogs={blogs} title="All Blogs!"/>}
-            {/* {error && <div>{error}</div> } */}
+            {error && <div>{error}</div> }
         </div>
      );
 }
