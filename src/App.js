@@ -5,7 +5,7 @@ import Create from './Create';
 import BlogDetails from './BlogDetails';
 import NotFound from './NotFound';
 
-function App() {
+const App = () => {
   return (
     <Router>
     <div className="App">

@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-blogreact-dev-190449-authRole",
+      "UnauthRoleArn": "arn:aws:iam::176282536145:role/amplify-blogreact-dev-190449-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::176282536145:role/amplify-blogreact-dev-190449-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-blogreact-dev-190449-deployment",
+      "UnauthRoleName": "amplify-blogreact-dev-190449-unauthRole",
+      "StackName": "amplify-blogreact-dev-190449",
+      "StackId": "arn:aws:cloudformation:us-east-1:176282536145:stack/amplify-blogreact-dev-190449/0f0c9cf0-ef5b-11ec-b739-122d0c4e7e13",
+      "AmplifyAppId": "d1t18ox66bqesw"
+    }
+  }
+}
