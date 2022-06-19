@@ -17,9 +17,9 @@ const Home = () => {
           const blogData = await API.graphql(graphqlOperation(listBlogs))
           const blogs = blogData.data.listBlogs.items
           setBlogs(blogs)
-          setIsLoading(true)
+          setIsLoading(false)
         } catch (err) { 
-          console.log('error fetching todos: ' + err.message) 
+          console.log('error fetching blogs: ' + err.message) 
           setError(err.message)
         }
       }
