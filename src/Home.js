@@ -10,7 +10,7 @@ Amplify.configure(awsExports);
 const Home = () => {
     const [blogs, setBlogs] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState(none)
+    const [error, setError] = useState(null)
 
     async function fetchBlogs() {
         try {
