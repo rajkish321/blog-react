@@ -1,7 +1,5 @@
 import BlogList from "./BlogList";
-// import { fetchBlogs } from "./FetchData";
 import { useEffect, useState } from "react";
-
 import { listBlogs } from "./graphql/queries";
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
 import awsExports from "./aws-exports";

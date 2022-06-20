@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 const BlogList = (props) => {
     const blogs = props.blogs
     const pageTitle = props.title
-    console.log(blogs)
 
     return (         
     <div className="blog-list">

@@ -1,37 +1,46 @@
 import { useHistory, useParams } from "react-router-dom";
 import { deleteBlogs } from "./graphql/mutations";
 import { getBlogs } from "./graphql/queries";
-import useFetch from "./useFetch";
+import Amplify, { API, graphqlOperation } from 'aws-amplify'
+import awsExports from "./aws-exports";
+import { useState, useEffect } from "react";
+Amplify.configure(awsExports);
 
 const BlogDetails = () => {
     const { id } = useParams();
-    const url = 'http://localhost:8000/blogs/' + id
-    // const [blog, isLoading, error] = useFetch(url)
-    const [blogs, setBlogs] = useState([])
+    const [blog, setBlog] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
     const history = useHistory();
 
 
     async function getBlogDetails() {
-        try {
-          const blogData = await API.graphql(graphqlOperation(getBlogs, {id: id}))
-          const blog = blogData.data.listBlogs.items
-          setBlogs(blog)
-          setIsLoading(false)
-        } catch (err) { 
-          console.log('error fetching blogs: ' + err.message) 
-          setError(err.message)
-        }
+      try {
+        const blogData = await API.graphql(graphqlOperation(getBlogs, {id: id}))
+        console.log(blogData)
+        const blog = blogData.data.getBlogs
+        setBlog(blog)
+        setIsLoading(false)
+      } catch (err) { 
+        console.log('error fetching blogs: ' + err.message) 
+        setError("Error: " + err.message)
       }
+    }
+    async function deleteBlog(id) {
+      try {
+        await API.graphql(graphqlOperation(deleteBlogs, {input: {id: id}}))
+        history.push("/")
+      } catch (err) { 
+        console.log('error fetching blogs: ' + err.message) 
+      }
+    }
 
-    useEffect(() => {
+    useEffect(() => { //currently gives warning b/c of 'id' I think, ignoring for now
         getBlogDetails()
       }, [])
     
     const handleDelete = () => {
-        API.graphql(graphqlOperation(deleteBlogs, {id: id}))
-        history.push("/")
+        deleteBlog(id)
 
     }
     return ( 
